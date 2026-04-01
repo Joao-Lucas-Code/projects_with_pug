@@ -1,0 +1,54 @@
+/* Configurações gerais da página */
+body {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 40px;
+  background-color: #f9f9f9;
+  font-family: sans-serif;
+}
+
+header {
+  border-bottom: 2px solid #eee;
+  margin-bottom: 30px;
+  padding-bottom: 10px;
+}
+
+.subtitle {
+  color: #777;
+}
+
+/* Estilo dos Cards */
+.card {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  padding: 15px;
+  margin-bottom: 15px;
+  border-radius: 10px;
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.05);
+}
+
+.card h3 {
+  margin-top: 0;
+  color: #333;
+}
+
+.tech-text {
+  color: #666;
+}
+
+/* Cores dinâmicas para o Status */
+.status {
+  font-weight: bold;
+}
+
+.status-ativo { color: #27ae60; }
+.status-pausa { color: #f39c12; }
+.status-finalizado { color: #95a5a6; }
+
+/* Rodapé */
+footer {
+  margin-top: 50px;
+  font-size: 0.8em;
+  color: #aaa;
+  text-align: center;
+}

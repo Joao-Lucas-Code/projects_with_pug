@@ -1,31 +1,30 @@
-//- 1. DEFINIÇÃO DO MIXIN (A "Função" que cria o layout do card)
 mixin projetoCard(nome, tecnologia, status)
-  .card(style="border: 1px solid #ddd; padding: 15px; margin-bottom: 15px; border-radius: 10px; box-shadow: 2px 2px 5px rgba(0,0,0,0.05); font-family: sans-serif;")
-    h3(style="margin-top: 0; color: #333;")= nome
-    p(style="color: #666;") 🛠️ Tecnologia: 
+  .card
+    h3= nome
+    p.tech-text 🛠️ Tecnologia: 
       strong #{tecnologia}
     
-    //- Lógica condicional para as cores do status
+    //- Agora usamos classes CSS ao invés de estilos inline
     if status == 'Ativo'
-      span(style="color: #27ae60; font-weight: bold;") ● #{status}
+      span.status.status-ativo ● #{status}
     else if status == 'Em Pausa'
-      span(style="color: #f39c12; font-weight: bold;") 🟠 #{status}
+      span.status.status-pausa 🟠 #{status}
     else
-      span(style="color: #95a5a6; font-weight: bold;") ○ #{status}
+      span.status.status-finalizado ○ #{status}
 
-//- 2. ESTRUTURA DO DOCUMENTO
 doctype html
 html(lang="pt-br")
   head
     meta(charset="UTF-8")
     title Dashboard do João Lucas
-  body(style="max-width: 800px; margin: 0 auto; padding: 40px; background-color: #f9f9f9;")
-    
-    header(style="border-bottom: 2px solid #eee; margin-bottom: 30px; padding-bottom: 10px;")
+    //- Conectando o arquivo CSS (usamos ../ porque o HTML vai estar dentro da pasta dist)
+    link(rel="stylesheet", href="style.css")
+  
+  body
+    header
       h1 Dashboard de Projetos do Jolito 🚀
-      p(style="color: #777;") Desenvolvedor Back-end em formação | Sorocaba, SP
+      p.subtitle Desenvolvedor Back-end em formação | Sorocaba, SP
 
-    //- 3. DADOS (Simulando o que viria de um Banco de Dados ou API)
     - 
       var meusProjetos = [
         { nome: 'Pokemon Scraper', tech: 'Python', status: 'Ativo' },
@@ -35,10 +34,9 @@ html(lang="pt-br")
         { nome: 'Sistema MEI', tech: 'Go/PostgreSQL', status: 'Em Pausa' }
       ]
 
-    //- 4. O LOOP (Iteração sobre os dados)
     section.projetos
       each p in meusProjetos
         +projetoCard(p.nome, p.tech, p.status)
 
-    footer(style="margin-top: 50px; font-size: 0.8em; color: #aaa; text-align: center;")
-      p Gerado dinamicamente via Pug Template Engine.
+    footer
+      p Gerado dinamicamente via Pug e estilizado com CSS externo.
