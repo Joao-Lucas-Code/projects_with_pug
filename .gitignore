@@ -1,0 +1,14 @@
+# Configurações locais do editor (VS Code)
+.vscode/
+
+# Dependências (caso você use Node.js no futuro)
+node_modules/
+package-lock.json
+
+# Evita subir arquivos HTML duplicados na raiz por acidente
+/*.html
+!dist/*.html
+
+# Arquivos do sistema operacional
+.DS_Store
+Thumbs.db
