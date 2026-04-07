@@ -1,0 +1,196 @@
+//- Mixin para criar os cards de curiosidades do Thor
+mixin dogInfoCard(titulo, descricao, icone, imagem)
+  .card(data-aos="fade-up")
+    .card-icon
+      img(src=imagem, alt=titulo)
+    .card-content
+      h3 #{icone} #{titulo}
+      p.tech-text= descricao
+
+//- Mixin para estatísticas
+mixin statCard(numero, label, icone)
+  .stat-item(data-aos="zoom-in")
+    .stat-icon= icone
+    .stat-number= numero
+    .stat-label= label
+
+doctype html
+html(lang="pt-br")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    title Thor: O Pug Mais Estiloso do Brasil 🐾
+    link(rel="stylesheet", href="style.css")
+    link(rel="preconnect", href="https://fonts.googleapis.com")
+    link(href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap", rel="stylesheet")
+    link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css")
+
+  body
+    //- Navegação
+    nav.navbar
+      .nav-brand
+        i.fas.fa-paw
+        span Thor
+      .nav-links
+        a(href="#home") Início
+        a(href="#sobre") Sobre
+        a(href="#curiosidades") Curiosidades
+        a(href="#galeria") Galeria
+
+    //- Hero Section
+    header#home.hero
+      .hero-content
+        .hero-badge
+          i.fas.fa-crown
+          span O Rei da Casa
+        h1.hero-title Thor
+        p.hero-subtitle O Pug Mais Carismático de São Paulo
+        .hero-stats
+          .hero-stat
+            span.number 5
+            span.label Anos de Realeza
+          .hero-stat
+            span.number ∞
+            span.label Sonecas Diárias
+          .hero-stat
+            span.number 100%
+            span.label Amoroso
+        .hero-cta
+          a.btn-primary(href="#curiosidades") 
+            i.fas fa-bone
+            span Conheça o Thor
+          a.btn-secondary(href="#galeria")
+            i.fas fa-images
+            span Ver Galeria
+      .hero-image
+        .image-wrapper
+          img.main-pug(src="assets/pugi.png", alt="Thor - O Pug Estiloso")
+          .floating-elements
+            .float-item 🦴
+            .float-item 🎾
+            .float-item 💤
+            .float-item 🍖
+
+    //- Seção Sobre
+    section#sobre.about
+      .container
+        .about-grid
+          .about-image
+            .image-stack
+              img(src="assets/pug.png", alt="Thor pensativo")
+              .image-decoration
+          .about-content
+            h2.section-title 
+              span.highlight Quem é
+              |  o Thor?
+            p.about-text
+              | Thor é um pug de 5 anos que conquistou não apenas a casa, mas o coração de todos que o conhecem. Com sua personalidade única e olhar expressivo, ele transforma qualquer dia comum em uma aventura cheia de roncos e petiscos.
+            p.about-text
+              | Nascido em São Paulo, Thor desenvolveu habilidades extraordinárias como dormir em posições impossíveis, detectar comida a quilômetros de distância e conquistar sofás com apenas um olhar.
+            .about-features
+              .feature
+                i.fas fa-heart
+                span Super Carinhoso
+              .feature
+                i.fas fa-bed
+                span Campeão de Sonecas
+              .feature
+                i.fas fa-utensils
+                span Foodie Profissional
+
+    //- Estatísticas
+    section.stats-section
+      .container
+        h2.section-title.center 
+          i.fas fa-chart-line
+          span Números da Realeza
+        .stats-grid
+          +statCard("18h", "Dormindo por Dia", "💤")
+          +statCard("47", "Roncos por Minuto", "🔊")
+          +statCard("∞", "Petiscos Desejados", "🍖")
+          +statCard("0", "Preocupações", "😌")
+
+    //- Curiosidades
+    section#curiosidades.curiosities
+      .container
+        h2.section-title.center
+          i.fas fa-lightbulb
+          span Curiosidades do Thor
+        p.section-subtitle Coisas que tornam este pug verdadeiramente único
+
+        - 
+          var thorFacts = [
+            { titulo: 'Gourmet Canino', desc: 'Frango desfiado é apenas o começo. Thor possui paladar refinado para qualquer comida que caia no chão, independentemente do tempo de exposição.', icone: '🍗', imagem: 'assets/dog.png' },
+            { titulo: 'Campeão de Sonecas', desc: 'Capaz de dormir 18 horas por dia e ainda assim parecer exausto. Seu recorde é dormir em 7 posições diferentes em apenas 2 horas.', icone: '🛏️', imagem: 'assets/pug.png' },
+            { titulo: 'Vigilante Noturno', desc: 'O motoboy é considerado ameaça nível 5, junto com o aspirador de pó e qualquer objeto que ouse se mover sem permissão prévia.', icone: '🚨', imagem: 'assets/pugi.png' },
+            { titulo: 'Atleta Profissional', desc: 'Corre na velocidade da luz para a cozinha quando detecta o som de um pacote sendo aberto. Velocidade máxima: 2 km/h.', icone: '⚡', imagem: 'assets/dog.png' },
+            { titulo: 'Terapeuta Oficial', desc: 'Seu ronco tem propriedades terapêuticas comprovadas. É capaz de acalmar humanos estressados apenas com sua presença sonolenta.', icone: '🎵', imagem: 'assets/pug.png' },
+            { titulo: 'Conquistador de Sofás', desc: 'Domina a arte de ocupar 80% do sofá sendo apenas 20% do peso total permitido. PhD em conforto máximo.', icone: '🛋️', imagem: 'assets/pugi.png' }
+          ]
+
+        .cards-grid
+          each fact in thorFacts
+            +dogInfoCard(fact.titulo, fact.desc, fact.icone, fact.imagem)
+
+    //- Galeria
+    section#galeria.gallery
+      .container
+        h2.section-title.center
+          i.fas fa-camera
+          span Galeria do Thor
+        .gallery-grid
+          .gallery-item.large
+            img(src="assets/pugi.png", alt="Thor Estiloso")
+            .gallery-overlay
+              span O Patrão
+          .gallery-item
+            img(src="assets/pug.png", alt="Thor Pensativo")
+            .gallery-overlay
+              span Pensando na vida
+          .gallery-item
+            img(src="assets/dog.png", alt="Thor Feliz")
+            .gallery-overlay
+              span Hora do petisco
+          .gallery-item.wide
+            img(src="assets/pug.png", alt="Thor Dormindo")
+            .gallery-overlay
+              span Modo soneca ativado
+
+    //- CTA Section
+    section.cta-section
+      .container
+        .cta-box
+          .cta-content
+            h2 Quer conhecer o Thor pessoalmente?
+            p Ele está sempre disponível para carinho, petiscos e sessões de fotos (quando não está dormindo).
+          .cta-button
+            button.btn-primary
+              i.fas fa-calendar-check
+              span Agendar Visita
+
+    //- Footer
+    footer.main-footer
+      .container
+        .footer-content
+          .footer-brand
+            i.fas fa-paw
+            span Thor
+            p O pug que conquistou São Paulo
+          .footer-links
+            h4 Links Rápidos
+            a(href="#home") Início
+            a(href="#sobre") Sobre
+            a(href="#curiosidades") Curiosidades
+            a(href="#galeria") Galeria
+          .footer-social
+            h4 Redes Sociais
+            .social-icons
+              a(href="#")
+                i.fab fa-instagram
+              a(href="#")
+                i.fab fa-twitter
+              a(href="#")
+                i.fab fa-tiktok
+        .footer-bottom
+          p Feito com ❤️ e muitos petiscos pelo Jolito | © 2026 Thor, o Pug
+          p.footer-quote "Roncar é viver, petiscar é preciso"
